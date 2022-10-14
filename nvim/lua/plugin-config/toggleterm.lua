@@ -3,37 +3,48 @@ if not status_ok then
     return
 end
 
-local opt = {
-  noremap = true,
-  silent = true,
-}
-
-local map = vim.api.nvim_set_keymap
-toggleterm.setup({
-    hide_numbers = true,
-    shade_filetypes = {},
-    shade_terminals = true,
-    shading_factor = 2,
-    start_in_insert = true,
-    insert_mappings = true,
-    persist_size = true,
-    direction = "float",
-    close_on_exit = true,
-    shell = vim.o.shell,
-    float_opts = {
-        border = "double",        -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-        winblend = 0,
-        highlights = {
-            border = "Normal",
-            background = "Normal",
-        },
-    },
-})
 
 local Terminal = require("toggleterm.terminal").Terminal
 
+local shell = Terminal:new({
+  cmd = "zsh",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "curved",        -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+  },
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-\\>", "<cmd>close<CR>", {noremap = true, silent = true})
+  end,
+})
+
+local horizontal_shell = Terminal:new({
+  cmd = "zsh",
+  dir = "git_dir",
+  direction = "horizontal",
+})
+
+local tab_shell = Terminal:new({
+  cmd="zsh",
+  dir="git_dir",
+  direction = "tab",
+})
+
+function _TAB_SHELL_TOGGLE()
+    tab_shell:toggle()
+end
+
+function _SHELL_TOGGLE()
+    shell:toggle()
+end
+
+function _HORIZONTAL_SHELL_TOGGLE()
+    horizontal_shell:toggle()
+end
+
 -- local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-lazygit = Terminal:new({
+local lazygit = Terminal:new({
   cmd = "lazygit",
   dir = "git_dir",
   direction = "float",
@@ -51,18 +62,34 @@ lazygit = Terminal:new({
   -- end,
 })
 
-local function _LAZYGIT_TOGGLE()
+function _LAZYGIT_TOGGLE()
     lazygit:toggle()
 end
 
-local node = Terminal:new({ cmd = "node", hidden = true })
+local python = Terminal:new({
+  cmd = "python",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "curved",        -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+  },
+  -- function to run on opening the terminal
+})
+
+local node = Terminal:new({
+  cmd = "node",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "curved",        -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+  },
+  -- function to run on opening the terminal
+})
 
 function _NODE_TOGGLE()
     node:toggle()
 end
 
-
-local python = Terminal:new({ cmd = "python", hidden = true })
 
 function _PYTHON_TOGGLE()
     python:toggle()

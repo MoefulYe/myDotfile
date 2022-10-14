@@ -98,4 +98,12 @@ pluginKeys.telescopeList = {
     ["<C-d>"] = "preview_scrolling_down",
   },
 }
+
+
+map("n","<C-\\>",":lua _SHELL_TOGGLE()<CR>",opt)
+map("n","<leader>tt",":lua _TAB_SHELL_TOGGLE()<CR>",opt)
+map("n","<leader>th",":lua _HORIZONTAL_SHELL_TOGGLE()<CR>",opt)
+map("n","<leader>tn",":lua _NODE_TOGGLE()<CR>",opt)
+map("n","<leader>tp",":lua _PYTHON_TOGGLE()<CR>",opt)
+map("n","<leader>gg",":lua _LAZYGIT_TOGGLE()<CR>",opt)
 return pluginKeys
