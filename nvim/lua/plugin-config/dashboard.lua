@@ -13,32 +13,32 @@ db.custom_footer = {
 db.custom_center = {
   {
     icon = "  ",
-    desc = "Projects                            ",
+    desc = "Projects            ",
     action = "Telescope projects",
   },
   {
     icon = "  ",
-    desc = "Recently files                      ",
+    desc = "Recently files      ",
     action = "Telescope oldfiles",
   },
   {
     icon = "  ",
-    desc = "Edit Projects                       ",
+    desc = "Edit Projects       ",
     action = "edit ~/.local/share/nvim/project_nvim/project_history",
   },
   {
     icon = "  ",
-    desc = "Find file                           ",
+    desc = "Find file           ",
     action = "Telescope find_files",
   },
   {
     icon = "  ",
-    desc = "Find text                           ",
+    desc = "Find text           ",
     action = "Telescopecope live_grep",
   },
   { 
     icon = "  ", 
-    desc = "Change Theme                        ", 
+    desc = "Change Theme        ", 
     action = 'Telescope colorscheme'
   },
 }

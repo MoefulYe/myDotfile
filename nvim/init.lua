@@ -8,3 +8,5 @@ require("plugin-config.bufferline")
 require("plugin-config.dashboard")
 require("plugin-config.project")
 require("plugin-config.toggleterm")
+require("plugin-config.nvim-treesitter")
+
