@@ -8,6 +8,8 @@ local map = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.copilot_no_tab_map = true
+map("i", "<c-j>", 'copilot#Accept("<CR>")', { noremap = true, silent = true, expr = true })
 map("n", "<f1>", ":NvimTreeToggle<CR>", opt)
 
 map("v", "$", "g_", opt)
